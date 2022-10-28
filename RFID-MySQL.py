@@ -6,11 +6,12 @@ from mfrc522 import SimpleMFRC522
 import RPi.GPIO as GPIO
 import mysql.connector
 
+print("Conectando")
 cnx = mysql.connector.connect(user='adrianln', password='1234',
                                  host='192.168.100.157',
                                  database='RFID')
 
-
+print("Conectado a la base de datos")
 # Inicar el sensor
 reader = SimpleMFRC522()
 
