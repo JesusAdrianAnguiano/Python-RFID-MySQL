@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 import mysql.connector
 
 print("Conectando")
-cnx = mysql.connector.connect(user='adrianln', password='1234',
+cnx = mysql.connector.connect(user='adrianlan', password='1234',
                                  host='192.168.100.157',
                                  database='RFID')
 
@@ -22,8 +22,9 @@ try:
         print("Acercar el tag al lector")
         id, text = reader.read()
         print("ID: %s\nText: %s" % (id,text))
+        nombre=input("Ingresa tu nombre: ")
         cursor = cnx.cursor()
-        query = ("INSERT INTO rfid (texto,rfid) VALUES ('"+ text +"','"+ id +"');")
+        query = ("INSERT INTO rfid (nombre,texto,rfid) VALUES ('" + nombre + "','%s','%s');" % (text,id))
         cursor.execute(query)
         cnx.commit()
         sleep(5)
